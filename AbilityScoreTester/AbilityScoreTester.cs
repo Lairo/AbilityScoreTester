@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace AbilityScoreTester
 {
-    class AbilityScoreTester
+    class AbilityScoreCalculator
     {
         public int RollResult = 14;
         public double DividedBy = 1.75;
         public int AddAmount = 2;
         public int Minimum = 3;
         public int Score;
+       
 
         public void CalculateAbilityScore()
         {
@@ -28,5 +29,6 @@ namespace AbilityScoreTester
             else
                 Score = added;
         }
+                
     }
 }

@@ -10,6 +10,58 @@ namespace AbilityScoreTester
     {
         static void Main(string[] args)
         {
+            
+            AbilityScoreCalculator calculator = new AbilityScoreCalculator();
+            while (true)
+            {
+                calculator.RollResult = ReadInt(calculator.RollResult, "Starting 4d6 roll");
+                calculator.DividedBy = ReadDouble(calculator.DividedBy, "Divide by");
+                calculator.AddAmount = ReadInt(calculator.AddAmount, "Add amount");
+                calculator.Minimum = ReadInt(calculator.Minimum, "Minimum");
+                calculator.CalculateAbilityScore();
+                Console.WriteLine("Calculated ability score: " + calculator.Score);
+                Console.WriteLine("Press Q to quit, any other key to continue");
+                char keyChar = Console.ReadKey(true).KeyChar;
+                if ((keyChar == 'Q') || (keyChar == 'q')) return;
+            }
+        }        
+
+        private static int ReadInt(int lastUsedValue, string prompt)
+        {
+            while (true)
+            {
+                Console.Write($"{prompt} [{lastUsedValue}]: ");
+                string newRoll = Console.ReadLine();
+                if (int.TryParse(newRoll, out int value))
+                {
+                    Console.WriteLine($"       using value {value}");
+                    return value;
+                }
+                else
+                {
+                    Console.WriteLine($"       using the default value {lastUsedValue}");
+                    return lastUsedValue;
+                }
+            }
+        }
+
+        private static double ReadDouble(double lastUsedValue, string prompt)
+        {
+            while (true)
+            {
+                Console.Write($"{prompt} [{lastUsedValue}]: ");
+                string newRoll = Console.ReadLine();
+                if (double.TryParse(newRoll, out double value))
+                {
+                    Console.WriteLine($"       using value {value}");
+                    return value;
+                }
+                else
+                {
+                    Console.WriteLine($"       using the default value {lastUsedValue}");
+                    return value;
+                                }
+            }
         }
     }
 }
